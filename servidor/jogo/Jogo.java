@@ -1,11 +1,6 @@
 package jogo;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.Calendar;
-
-@SuppressWarnings("serial")
-public class Jogo extends UnicastRemoteObject implements IJogo{
+public class Jogo implements IJogo{
 	private Tabuleiro tabuleiro;
 	private int jogadorDaVez = 1;
 	private int numJogadores = 0;
@@ -14,14 +9,14 @@ public class Jogo extends UnicastRemoteObject implements IJogo{
 	
 	/**
 	 * Construtor...
-	 * @throws RemoteException 
+	 * @ 
 	 */
-	public Jogo() throws RemoteException {
+	public Jogo()  {
 		tabuleiro = new Tabuleiro();
 	}
 
 	@Override
-	public int entrarNaPartida( ) throws RemoteException {
+	public int entrarNaPartida( )  {
 		if(numJogadores < 2)
 			return ++numJogadores;
 		else
@@ -29,17 +24,17 @@ public class Jogo extends UnicastRemoteObject implements IJogo{
 	}
 
 	@Override
-	public boolean isMinhaVez(int i) throws RemoteException {
+	public boolean isMinhaVez(int i)  {
 		return i == jogadorDaVez;
 	}
 
 	@Override
-	public boolean isJogadaValida(int i, int posx, int posy) throws RemoteException {
+	public boolean isJogadaValida(int i, int posx, int posy)  {
 		return posx <= 3 && posx >= 1 && posy <= 3 && posy >= 1 && tabuleiro.getPosicao(posx, posy) == 0;			
 	}
 
 	@Override
-	public String realizarJogada(int i, int posx, int posy) throws RemoteException {
+	public String realizarJogada(int i, int posx, int posy)  {
 		
 		tabuleiro.setPosicao(posx,  posy, i);
 		jogadorDaVez = (jogadorDaVez % 2) + 1;
@@ -51,7 +46,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo{
 	}
 
 	@Override
-	public boolean isPartidaEncerrada() throws RemoteException {
+	public boolean isPartidaEncerrada()  {
 		return tabuleiro.checagemDeColunas() != 0 
 				|| tabuleiro.checagemDeLinhas() != 0
 				|| tabuleiro.checagemDeDiagonais() != 0
@@ -61,7 +56,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo{
 	}
 
 	@Override
-	public int resultadoPartida() throws RemoteException {
+	public int resultadoPartida()  {
 		int vencedor = 0;
 		int resultColunas = tabuleiro.checagemDeColunas();
 		int resultLinhas = tabuleiro.checagemDeLinhas();
@@ -78,24 +73,24 @@ public class Jogo extends UnicastRemoteObject implements IJogo{
 	}
 	
 	@Override
-	public boolean ultrapassouTempo() throws RemoteException{
+	public boolean ultrapassouTempo() {
 		System.out.print("O tempo passado em milissegundos � ");
 		System.out.println(System.currentTimeMillis() - horarioInicio);
 		return (System.currentTimeMillis() - horarioInicio) >= DURACAO_MAXIMA;
 	}
 
 	@Override
-	public boolean isPronto() throws RemoteException {
+	public boolean isPronto()  {
 		return numJogadores == 2;
 	}
 
 	@Override
-	public String getTabuleiro() throws RemoteException {
+	public String getTabuleiro()  {
 		return tabuleiro.toString();
 	}
 
 	@Override
-	public void newGame() throws RemoteException {
+	public void newGame()  {
 		if(numJogadores != 1) {
 			numJogadores = 0;
 			tabuleiro.zerarTabuleiro();
