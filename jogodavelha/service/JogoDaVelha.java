@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import javax.jws.WebService;
 
 @WebService(endpointInterface = "service.JogoDaVelhaInterface")
-public class JogoDaVelhaService implements JogoDaVelhaInterface{
+public class JogoDaVelha implements JogoDaVelhaInterface{
 
 	private static Jogo jogo;
 	
@@ -13,7 +13,7 @@ public class JogoDaVelhaService implements JogoDaVelhaInterface{
 		jogo = new Jogo();	
 	}
 	
-	public JogoDaVelhaService() throws RemoteException {
+	public JogoDaVelha() throws RemoteException {
 		super();		
 	}
 

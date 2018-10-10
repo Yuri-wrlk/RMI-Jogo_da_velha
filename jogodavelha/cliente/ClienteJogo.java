@@ -1,4 +1,4 @@
-package jogador;
+package cliente;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -91,13 +91,11 @@ public class ClienteJogo {
 			e.printStackTrace();
 		}
 		
+		
 		QName qualifiedName = new QName("http://service/", "JogoDaVelhaService");
 		Service service = Service.create(endpoint, qualifiedName);
 		JogoDaVelhaInterface jogo = service.getPort(JogoDaVelhaInterface.class);
 		
-		//double temperaturaC = 27.0;
-		//double temperaturaF = stub.celsiusToFahrenheit(temperaturaC);
-		//System.out.println(temperaturaC + "�C = " + temperaturaF + "�F");
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Bem vindo ao jogo da velha!");
@@ -112,7 +110,7 @@ public class ClienteJogo {
 			
 			sc.close();
 		} 
-	
+		
 	}
 	
 		
