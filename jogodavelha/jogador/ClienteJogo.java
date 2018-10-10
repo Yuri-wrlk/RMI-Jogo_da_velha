@@ -7,7 +7,7 @@ import java.util.Scanner;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import Servidor.JogoDaVelhaInterface;
+import service.JogoDaVelhaInterface;
 
 
 public class ClienteJogo {
@@ -86,7 +86,7 @@ public class ClienteJogo {
 			throws  MalformedURLException, InterruptedException {
 		URL endpoint = null;
 		try {
-			endpoint = new URL("http://localhost:8080/Jogo/JogoDaVelha?wsdl");
+			endpoint = new URL("http://localhost:8080/jogodavelha/JogoDaVelha?wsdl");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -97,7 +97,7 @@ public class ClienteJogo {
 		
 		//double temperaturaC = 27.0;
 		//double temperaturaF = stub.celsiusToFahrenheit(temperaturaC);
-		//System.out.println(temperaturaC + "°C = " + temperaturaF + "°F");
+		//System.out.println(temperaturaC + "ï¿½C = " + temperaturaF + "ï¿½F");
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Bem vindo ao jogo da velha!");

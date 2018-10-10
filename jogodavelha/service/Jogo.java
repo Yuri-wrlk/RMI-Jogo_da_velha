@@ -1,4 +1,4 @@
-package Servidor;
+package service;
 
 public class Jogo{
 	private Tabuleiro tabuleiro;
