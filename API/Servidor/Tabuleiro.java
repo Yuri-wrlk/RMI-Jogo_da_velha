@@ -1,4 +1,4 @@
-package jogo;
+package Servidor;
 
 public class Tabuleiro {
 	

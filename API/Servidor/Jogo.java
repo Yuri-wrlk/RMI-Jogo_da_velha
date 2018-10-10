@@ -1,6 +1,6 @@
-package jogo;
+package Servidor;
 
-public class Jogo implements IJogo{
+public class Jogo{
 	private Tabuleiro tabuleiro;
 	private int jogadorDaVez = 1;
 	private int numJogadores = 0;
@@ -15,7 +15,7 @@ public class Jogo implements IJogo{
 		tabuleiro = new Tabuleiro();
 	}
 
-	@Override
+	
 	public int entrarNaPartida( )  {
 		if(numJogadores < 2)
 			return ++numJogadores;
@@ -23,17 +23,17 @@ public class Jogo implements IJogo{
 			return -1;
 	}
 
-	@Override
+	
 	public boolean isMinhaVez(int i)  {
 		return i == jogadorDaVez;
 	}
 
-	@Override
+	
 	public boolean isJogadaValida(int i, int posx, int posy)  {
 		return posx <= 3 && posx >= 1 && posy <= 3 && posy >= 1 && tabuleiro.getPosicao(posx, posy) == 0;			
 	}
 
-	@Override
+	
 	public String realizarJogada(int i, int posx, int posy)  {
 		
 		tabuleiro.setPosicao(posx,  posy, i);
@@ -45,7 +45,7 @@ public class Jogo implements IJogo{
 		return tabuleiro.toString();
 	}
 
-	@Override
+	
 	public boolean isPartidaEncerrada()  {
 		return tabuleiro.checagemDeColunas() != 0 
 				|| tabuleiro.checagemDeLinhas() != 0
@@ -55,7 +55,7 @@ public class Jogo implements IJogo{
 		
 	}
 
-	@Override
+	
 	public int resultadoPartida()  {
 		int vencedor = 0;
 		int resultColunas = tabuleiro.checagemDeColunas();
@@ -72,24 +72,24 @@ public class Jogo implements IJogo{
 		return vencedor == -1 ? 1 : vencedor == 1 ? 2 : 0;	
 	}
 	
-	@Override
+	
 	public boolean ultrapassouTempo() {
 		System.out.print("O tempo passado em milissegundos � ");
 		System.out.println(System.currentTimeMillis() - horarioInicio);
 		return (System.currentTimeMillis() - horarioInicio) >= DURACAO_MAXIMA;
 	}
 
-	@Override
+	
 	public boolean isPronto()  {
 		return numJogadores == 2;
 	}
 
-	@Override
+	
 	public String getTabuleiro()  {
 		return tabuleiro.toString();
 	}
 
-	@Override
+	
 	public void newGame()  {
 		if(numJogadores != 1) {
 			numJogadores = 0;

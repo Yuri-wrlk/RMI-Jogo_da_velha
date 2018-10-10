@@ -1,12 +1,14 @@
 package jogador;
 
 import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
+import java.net.URL;
 import java.util.Scanner;
 
-import jogo.IJogo;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+
+import Servidor.JogoDaVelhaInterface;
+
 
 public class ClienteJogo {
 	/**
@@ -14,13 +16,11 @@ public class ClienteJogo {
 	 * do lado servidor.
 	 * @param jogo
 	 * @param sc
-	 * @throws RemoteException
-	 * @throws NotBoundException
 	 * @throws MalformedURLException
 	 * @throws InterruptedException
 	 */
-	public static void executarPartida(IJogo jogo, Scanner sc) throws RemoteException, NotBoundException, MalformedURLException, InterruptedException{
-		/*
+	public static void executarPartida(JogoDaVelhaInterface jogo, Scanner sc) throws MalformedURLException, InterruptedException{
+		
 		int meuId;
 		meuId = jogo.entrarNaPartida();
 		System.out.println("Aguardando Jogadores...");
@@ -74,41 +74,45 @@ public class ClienteJogo {
 			jogo.newGame();
 			executarPartida(jogo, sc);
 		}
-		*/
+		
 	}
 	/**
 	 * Método main para execução transparente do jogo do lado cliente.
 	 * @param args
-	 * @throws RemoteException
-	 * @throws NotBoundException
 	 * @throws MalformedURLException
 	 * @throws InterruptedException
 	 */
 	public static void main(String[] args)
-			throws RemoteException, NotBoundException, MalformedURLException, InterruptedException {
-		/*
+			throws  MalformedURLException, InterruptedException {
+		URL endpoint = null;
 		try {
-			IJogo jogo = (IJogo) Naming.lookup("rmi://localhost/Jogo");
-
+			endpoint = new URL("http://localhost:8080/Jogo/JogoDaVelha?wsdl");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 		
-
+		QName qualifiedName = new QName("http://service/", "JogoDaVelhaService");
+		Service service = Service.create(endpoint, qualifiedName);
+		JogoDaVelhaInterface jogo = service.getPort(JogoDaVelhaInterface.class);
+		
+		//double temperaturaC = 27.0;
+		//double temperaturaF = stub.celsiusToFahrenheit(temperaturaC);
+		//System.out.println(temperaturaC + "�C = " + temperaturaF + "�F");
+		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Bem vindo ao jogo da velha!");
 
 		System.out.println(" Se você deseja se juntar a uma partida digite 1");
 			
 		int iniciarPartida = sc.nextInt();
-
+		
+		
 		if (iniciarPartida == 1) {
 			executarPartida(jogo, sc);
 			
 			sc.close();
-		}
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.err.println("Servidor não iniciado...");
-		}
-	*/
+		} 
+	
 	}
 	
 		
