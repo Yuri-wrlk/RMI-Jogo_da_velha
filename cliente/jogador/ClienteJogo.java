@@ -20,6 +20,7 @@ public class ClienteJogo {
 	 * @throws InterruptedException
 	 */
 	public static void executarPartida(IJogo jogo, Scanner sc) throws RemoteException, NotBoundException, MalformedURLException, InterruptedException{
+		/*
 		int meuId;
 		meuId = jogo.entrarNaPartida();
 		System.out.println("Aguardando Jogadores...");
@@ -73,6 +74,7 @@ public class ClienteJogo {
 			jogo.newGame();
 			executarPartida(jogo, sc);
 		}
+		*/
 	}
 	/**
 	 * Método main para execução transparente do jogo do lado cliente.
@@ -84,6 +86,7 @@ public class ClienteJogo {
 	 */
 	public static void main(String[] args)
 			throws RemoteException, NotBoundException, MalformedURLException, InterruptedException {
+		/*
 		try {
 			IJogo jogo = (IJogo) Naming.lookup("rmi://localhost/Jogo");
 
@@ -105,6 +108,8 @@ public class ClienteJogo {
 			// TODO: handle exception
 			System.err.println("Servidor não iniciado...");
 		}
+	*/
 	}
+	
 		
 }

@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="cliente"/>
-	<classpathentry kind="src" path="jogo"/>
-	<classpathentry kind="src" path="servidor"/>
+	<classpathentry kind="src" path="TicTac"/>
+	<classpathentry kind="src" path="API"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
