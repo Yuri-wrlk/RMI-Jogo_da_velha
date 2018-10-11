@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
+import javax.xml.ws.WebServiceException;
 
 import service.JogoDaVelhaInterface;
 
@@ -55,7 +56,7 @@ public class ClienteJogo {
 		
 		if (jogo.resultadoPartida() ==  meuId) {
 			if(jogo.ultrapassouTempo())
-				System.out.println("O seu oponente foi desconectado por demorar demais para realizar uma jogada.\n "
+				System.out.println("O seu oponente foi desconectado por demorar demais para realizar uma jogada.\n"
 						+ "Você se tornou o vencedor!");
 			else
 				System.out.println("Parabéns jogador você ganhou um jogo da velha");
@@ -63,7 +64,7 @@ public class ClienteJogo {
 			System.out.println("Empate! sOu você não joga bem, ou ele não joga bem, ou os dois jogam mal!");
 		} else {
 			if(jogo.ultrapassouTempo())
-				System.out.println("Você foi desconectado por demorar demais para realizar uma jogada.\n "
+				System.out.println("Você foi desconectado por demorar demais para realizar uma jogada.\n"
 						+ "Você foi considerado o perdedor da partida");
 			else
 				System.out.println("Perdeu! Precisa aprender a jogar...!");
@@ -91,7 +92,7 @@ public class ClienteJogo {
 			e.printStackTrace();
 		}
 		
-		
+		try {
 		QName qualifiedName = new QName("http://service/", "JogoDaVelhaService");
 		Service service = Service.create(endpoint, qualifiedName);
 		JogoDaVelhaInterface jogo = service.getPort(JogoDaVelhaInterface.class);
@@ -110,7 +111,9 @@ public class ClienteJogo {
 			
 			sc.close();
 		} 
-		
+		} catch(WebServiceException e) {
+			System.out.println("A conexão com o servidor caiu");
+		}
 	}
 	
 		

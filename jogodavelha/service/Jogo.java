@@ -17,9 +17,10 @@ public class Jogo{
 
 	
 	public int entrarNaPartida( )  {
-		if(numJogadores < 2)
+		if(numJogadores < 2) {
+			horarioInicio = System.currentTimeMillis();
 			return ++numJogadores;
-		else
+		} else
 			return -1;
 	}
 
